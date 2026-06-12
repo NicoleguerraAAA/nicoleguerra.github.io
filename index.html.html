@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nicole Guerra</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --verde:   #4A6741;
+      --marfil:  #F5F0E8;
+      --carbon:  #2C2C2A;
+      --gris:    #7a756e;
+      --borde:   #DDD7CC;
+      --blanco:  #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      background: var(--blanco);
+      color: var(--carbon);
+      line-height: 1.7;
+    }
+
+    /* ── Tipografía base ── */
+    .serif {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 300;
+    }
+
+    .label {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gris);
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: var(--verde);
+      border-bottom: 1px solid rgba(245,240,232,0.12);
+      padding: 0 6%;
+      height: 62px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 300;
+      font-size: 18px;
+      letter-spacing: 0.04em;
+      color: var(--marfil);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(245,240,232,0.65);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--marfil); }
+
+    /* ── Secciones ── */
+    section { padding: 110px 6%; }
+    .contenedor { max-width: 1080px; margin: 0 auto; }
+    hr.divisor { border: none; border-top: 1px solid var(--borde); max-width: 1080px; margin: 0 auto; }
+
+    /* ══════════════════════════════
+       HERO
+    ══════════════════════════════ */
+    #hero {
+      padding-top: 160px;
+      padding-bottom: 130px;
+      background: linear-gradient(to bottom, var(--verde) 0%, var(--verde) 52%, var(--blanco) 52%, var(--blanco) 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-grid {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 80px;
+      align-items: center;
+      width: 100%;
+    }
+
+    .hero-tagline {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 300;
+      font-style: italic;
+      font-size: clamp(44px, 6.5vw, 82px);
+      line-height: 1.1;
+      color: var(--marfil);
+      margin-bottom: 36px;
+    }
+
+    .hero-headline {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 300;
+      font-size: clamp(18px, 2vw, 22px);
+      line-height: 1.6;
+      color: var(--carbon);
+      margin-bottom: 16px;
+    }
+
+    .hero-subline {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 14px;
+      color: var(--gris);
+      margin-bottom: 48px;
+      line-height: 1.7;
+    }
+
+    .btn {
+      display: inline-block;
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 15px 36px;
+      transition: opacity 0.2s;
+    }
+
+    .btn-verde {
+      background: var(--verde);
+      color: var(--marfil);
+      border: 1px solid var(--verde);
+    }
+
+    .btn-verde:hover { opacity: 0.85; }
+
+    .btn-outline {
+      border: 1px solid var(--carbon);
+      color: var(--carbon);
+    }
+
+    .btn-outline:hover { background: var(--carbon); color: var(--marfil); }
+
+    .btn-marfil {
+      background: var(--marfil);
+      color: var(--verde);
+      border: 1px solid var(--marfil);
+    }
+
+    .btn-marfil:hover { opacity: 0.85; }
+
+    /* ══════════════════════════════
+       QUIÉN SOY
+    ══════════════════════════════ */
+    #quien-soy { background: var(--marfil); }
+
+    .dos-col {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .titulo-seccion {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 300;
+      font-size: clamp(36px, 4vw, 54px);
+      line-height: 1.1;
+      color: var(--carbon);
+    }
+
+    .titulo-seccion em {
+      display: block;
+      font-style: italic;
+      color: var(--verde);
+    }
+
+    .texto-cuerpo p {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 1.85;
+      color: var(--carbon);
+      margin-bottom: 20px;
+    }
+
+    .texto-cuerpo p:last-child { margin-bottom: 0; }
+
+    /* ══════════════════════════════
+       TESTIMONIOS
+    ══════════════════════════════ */
+    #testimonios { background: var(--blanco); }
+
+    .testimonios-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .testimonios-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .card-testimonio {
+      border: 1px solid var(--borde);
+      padding: 36px 32px;
+      background: var(--marfil);
+    }
+
+    .card-testimonio blockquote {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 300;
+      font-style: italic;
+      font-size: 18px;
+      line-height: 1.8;
+      color: var(--carbon);
+      margin-bottom: 20px;
+    }
+
+    .card-testimonio cite {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gris);
+      font-style: normal;
+    }
+
+    /* ══════════════════════════════
+       EL PROCESO
+    ══════════════════════════════ */
+    #el-proceso {
+      background: var(--verde);
+      color: var(--marfil);
+    }
+
+    #el-proceso .titulo-seccion { color: var(--marfil); }
+    #el-proceso .titulo-seccion em { color: #b5c9a8; }
+    #el-proceso .label { color: rgba(245,240,232,0.45); }
+
+    .para-quien {
+      margin-bottom: 52px;
+    }
+
+    .para-quien p {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 300;
+      font-size: 19px;
+      line-height: 1.75;
+      color: rgba(245,240,232,0.88);
+      margin-bottom: 8px;
+    }
+
+    .que-es-box {
+      border: 1px solid rgba(245,240,232,0.15);
+      padding: 28px 32px;
+      margin-bottom: 52px;
+    }
+
+    .que-es-box p {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 1.8;
+      color: rgba(245,240,232,0.85);
+      margin-bottom: 12px;
+    }
+
+    .que-es-box p:last-child { margin-bottom: 0; }
+
+    .no-es {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: rgba(245,240,232,0.5);
+    }
+
+    .fases { margin-bottom: 52px; }
+
+    .fase-item {
+      padding: 26px 0;
+      border-top: 1px solid rgba(245,240,232,0.1);
+    }
+
+    .fase-item:last-child {
+      border-bottom: 1px solid rgba(245,240,232,0.1);
+    }
+
+    .fase-num {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(245,240,232,0.4);
+      margin-bottom: 8px;
+    }
+
+    .fase-titulo {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 300;
+      font-style: italic;
+      font-size: 21px;
+      color: #b5c9a8;
+      margin-bottom: 8px;
+    }
+
+    .fase-desc {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 14px;
+      line-height: 1.75;
+      color: rgba(245,240,232,0.72);
+    }
+
+    .proceso-cta {
+      text-align: center;
+      padding-top: 16px;
+    }
+
+    .proceso-cta p {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 300;
+      font-style: italic;
+      font-size: 24px;
+      margin-bottom: 8px;
+      color: var(--marfil);
+    }
+
+    .proceso-cta .sub-cta {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 13px;
+      color: rgba(245,240,232,0.55);
+      margin-bottom: 32px;
+    }
+
+    /* ══════════════════════════════
+       SERVICIOS
+    ══════════════════════════════ */
+    #servicios { background: var(--marfil); }
+
+    .servicios-header {
+      margin-bottom: 56px;
+    }
+
+    .servicios-header p {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 14px;
+      color: var(--gris);
+      margin-top: 12px;
+      max-width: 460px;
+    }
+
+    .servicios-lista {
+      border-top: 1px solid var(--borde);
+    }
+
+    .servicio-fila {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--borde);
+      gap: 20px;
+    }
+
+    .servicio-nombre {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 300;
+      font-size: 20px;
+      color: var(--carbon);
+    }
+
+    .servicio-tag {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gris);
+      white-space: nowrap;
+    }
+
+    .servicio-entrada {
+      display: inline-block;
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      background: var(--verde);
+      color: var(--marfil);
+      padding: 4px 10px;
+      margin-left: 12px;
+      vertical-align: middle;
+    }
+
+    /* ══════════════════════════════
+       VIDEOS
+    ══════════════════════════════ */
+    #videos { background: var(--blanco); }
+
+    .videos-texto p {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 1.85;
+      color: var(--carbon);
+      margin-bottom: 28px;
+      max-width: 560px;
+    }
+
+    .redes {
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+
+    .red-link {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--carbon);
+      text-decoration: none;
+      border-bottom: 1px solid var(--verde);
+      padding-bottom: 2px;
+      transition: opacity 0.2s;
+    }
+
+    .red-link:hover { opacity: 0.6; }
+
+    /* ══════════════════════════════
+       CTA CIERRE
+    ══════════════════════════════ */
+    #contacto {
+      background: #2C2C2A;
+      color: var(--marfil);
+      text-align: center;
+      padding: 120px 6%;
+    }
+
+    .cta-frase {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 300;
+      font-style: italic;
+      font-size: clamp(30px, 4.5vw, 52px);
+      line-height: 1.25;
+      color: var(--marfil);
+      margin-bottom: 20px;
+    }
+
+    .cta-sub {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 15px;
+      color: rgba(245,240,232,0.6);
+      line-height: 1.75;
+      margin-bottom: 48px;
+    }
+
+    .cta-botones {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+
+    .sep { color: rgba(245,240,232,0.25); font-size: 13px; }
+
+    .cta-redes {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(245,240,232,0.4);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .cta-redes:hover { color: var(--marfil); }
+
+    .cta-redes-fila {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* ══════════════════════════════
+       FOOTER
+    ══════════════════════════════ */
+    footer {
+      background: #242422;
+      padding: 22px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer span {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 11px;
+      color: rgba(245,240,232,0.25);
+      letter-spacing: 0.06em;
+    }
+
+    /* ══════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════ */
+    @media (max-width: 768px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-deco { display: none; }
+      .dos-col { grid-template-columns: 1fr; gap: 36px; }
+      .testimonios-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      section { padding: 80px 6%; }
+      .servicio-fila { flex-direction: column; align-items: flex-start; gap: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══ NAV ══ -->
+  <nav>
+    <a href="#hero" class="nav-logo">Nicole Guerra</a>
+    <ul class="nav-links">
+      <li><a href="#quien-soy">Quién soy</a></li>
+      <li><a href="#el-proceso">El proceso</a></li>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#videos">Videos</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <!-- ══ HERO ══ -->
+  <section id="hero">
+    <div class="hero-grid">
+      <div>
+        <p class="label" style="margin-bottom: 32px;">Nicole Guerra</p>
+
+        <h1 class="hero-tagline">
+          Soltar lo externo.<br>
+          Sostener lo interno.
+        </h1>
+
+        <p class="hero-headline">
+          El problema no es lo que estás viviendo.<br>
+          Es desde dónde lo estás mirando.
+        </p>
+
+        <p class="hero-subline">
+          Acompaño procesos individuales para quienes quieren<br>
+          ver su experiencia desde otro lugar.
+        </p>
+
+        <a href="https://wa.me/56984445747" class="btn btn-verde" target="_blank" rel="noopener">
+          Agenda tu demo de 15 minutos
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divisor" />
+
+  <!-- ══ QUIÉN SOY ══ -->
+  <section id="quien-soy">
+    <div class="contenedor dos-col">
+      <div>
+        <h2 class="titulo-seccion">Quién<br><em>soy</em></h2>
+      </div>
+      <div class="texto-cuerpo">
+        <p>Fui profesional de la salud durante años. Funcional, resolutiva, siempre en movimiento. Hasta que dejé de reconocerme.</p>
+        <p>Pasé por los mismos territorios que acompaño — maternidad, relaciones, identidad, búsqueda. Desconectada del cuerpo, inflamada, buscando soluciones afuera. No como observadora. Desde adentro del loop.</p>
+        <p>Conecté con la Desprogramación del Campo Cuántico y desde ahí comencé a cambiar la mirada hacia adentro — hacia el cuerpo, hacia los patrones que operaban sin que yo lo supiera. Me entrené en operar desde un observador externo.</p>
+        <p>He sido mi propio laboratorio. En maternidad, crianza, vínculos, cuerpo. Trabajo desde ese lugar.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divisor" />
+
+  <!-- ══ TESTIMONIOS ══ -->
+  <section id="testimonios">
+    <div class="contenedor">
+      <div class="testimonios-header">
+        <p class="label">Palabras de quienes han pasado por aquí</p>
+      </div>
+      <div class="testimonios-grid">
+        <div class="card-testimonio">
+          <blockquote>"Aprendí a hacerme mejores preguntas y a mirar la maternidad desde un lugar distinto. Encontré más calma — no porque las cosas cambiaron, sino porque cambió desde dónde las miraba."</blockquote>
+          <cite>— Participante del proceso</cite>
+        </div>
+        <div class="card-testimonio">
+          <blockquote>"Un respiro."</blockquote>
+          <cite>— Participante del proceso</cite>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ EL PROCESO ══ -->
+  <section id="el-proceso">
+    <div class="contenedor dos-col">
+      <div>
+        <h2 class="titulo-seccion">El<br><em>proceso</em></h2>
+      </div>
+      <div>
+
+        <div class="para-quien">
+          <p class="label" style="margin-bottom: 20px;">Para quién es</p>
+          <p>Para quienes llevan tiempo buscando, entendiendo, trabajando en sí mismos — y siguen en el mismo lugar.</p>
+          <p>Para quienes sienten que hay algo más, pero no saben por dónde entrar.</p>
+          <p>Para quienes ya no pueden seguir mirando lo mismo con los mismos ojos.</p>
+        </div>
+
+        <div class="que-es-box">
+          <p>Un proceso individual de 3 fases basado en la Desprogramación del Campo Cuántico — una herramienta que trabaja directamente sobre los patrones que operan en automático, sin que seas consciente de ellos.</p>
+          <p class="no-es">No es terapia &nbsp;·&nbsp; No es coaching &nbsp;·&nbsp; Es reorganización estructural.</p>
+        </div>
+
+        <div class="fases">
+          <p class="label" style="margin-bottom: 4px;">Cómo funciona</p>
+
+          <div class="fase-item">
+            <p class="fase-num">Fase 01</p>
+            <p class="fase-titulo">Sesión viva · 1.5 horas</p>
+            <p class="fase-desc">Sin agenda previa. Traes lo que estás viviendo. Mapeo, educación desde lo que emerge, observador externo de tu experiencia.</p>
+          </div>
+
+          <div class="fase-item">
+            <p class="fase-num">Fase 02</p>
+            <p class="fase-titulo">DCC diferida + 21 días de acompañamiento</p>
+            <p class="fase-desc">Se realiza la DCC de forma diferida y se abre un canal por WhatsApp durante 21 días para integrar lo trabajado. El cuerpo necesita ese tiempo.</p>
+          </div>
+
+          <div class="fase-item">
+            <p class="fase-num">Fase 03</p>
+            <p class="fase-titulo">Sesión viva + DCC en vivo · 1.5 horas</p>
+            <p class="fase-desc">Segunda sesión con DCC en tiempo real. Mapeo desde donde está la persona, no desde donde debería estar.</p>
+          </div>
+        </div>
+
+        <div class="proceso-cta">
+          <p>¿Sientes que esto es para ti?</p>
+          <p class="sub-cta">Agenda una demo de 15 minutos — te cuento cómo trabajo y tú decides si resuena.</p>
+          <a href="https://wa.me/56984445747" class="btn btn-marfil" target="_blank" rel="noopener">
+            Escribir por WhatsApp
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SERVICIOS ══ -->
+  <section id="servicios">
+    <div class="contenedor">
+      <div class="servicios-header">
+        <p class="label" style="margin-bottom: 12px;">Lo que ofrezco</p>
+        <h2 class="titulo-seccion" style="font-size: clamp(32px, 3.5vw, 46px);">Servicios</h2>
+        <p>El proceso inicial es el punto de entrada. Todo lo demás se accede una vez completado.</p>
+      </div>
+
+      <div class="servicios-lista">
+
+        <div class="servicio-fila">
+          <div>
+            <span class="servicio-nombre">Proceso inicial — 3 fases</span>
+            <span class="servicio-entrada">Entrada</span>
+          </div>
+          <span class="servicio-tag">2 tutorías + 2 DCC</span>
+        </div>
+
+        <div class="servicio-fila">
+          <span class="servicio-nombre">Limpieza de cuerpo</span>
+          <span class="servicio-tag">1 tutoría/mes + DCC + WhatsApp</span>
+        </div>
+
+        <div class="servicio-fila">
+          <span class="servicio-nombre">Crianza</span>
+          <span class="servicio-tag">1 tutoría + DCC · o · 2 tutorías + DCC/mes</span>
+        </div>
+
+        <div class="servicio-fila">
+          <span class="servicio-nombre">Llama gemela</span>
+          <span class="servicio-tag">1 tutoría/mes · o · 2 tutorías/mes</span>
+        </div>
+
+        <div class="servicio-fila">
+          <span class="servicio-nombre">Visión extraocular</span>
+          <span class="servicio-tag">Pack 4 sesiones · DCC + entrenamiento</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ VIDEOS ══ -->
+  <section id="videos">
+    <div class="contenedor dos-col">
+      <div>
+        <h2 class="titulo-seccion">Vi<em>deos</em></h2>
+      </div>
+      <div class="videos-texto">
+        <p>Publico contenido sobre consciencia, entrelazamiento cuántico, patrones, cuerpo, vínculos y alimentación alcalina. Desde la observación, no desde las respuestas.</p>
+        <p>Si algo de lo que leíste acá resuena, ahí está el resto.</p>
+        <div class="redes">
+          <a href="https://www.tiktok.com/@nicole.guerra.aaa" class="red-link" target="_blank" rel="noopener">TikTok @nicole.guerra.aaa</a>
+          <a href="https://www.instagram.com/_nicoleguerra.aaa" class="red-link" target="_blank" rel="noopener">Instagram @_nicoleguerra.aaa</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CTA CIERRE ══ -->
+  <section id="contacto">
+    <div class="contenedor" style="max-width: 640px;">
+      <p class="cta-frase">Si algo de lo que leíste<br>te hizo click, escríbeme.</p>
+      <p class="cta-sub">
+        Agenda una entrevista demo de 15 minutos.<br>
+        Te cuento cómo trabajo y tú decides si resuena.
+      </p>
+      <div class="cta-botones">
+        <a href="https://wa.me/56984445747" class="btn btn-marfil" target="_blank" rel="noopener">
+          Escribir por WhatsApp
+        </a>
+      </div>
+      <div class="cta-redes-fila">
+        <a href="https://www.tiktok.com/@nicole.guerra.aaa" class="cta-redes" target="_blank" rel="noopener">TikTok</a>
+        <span class="sep">·</span>
+        <a href="https://www.instagram.com/_nicoleguerra.aaa" class="cta-redes" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ══ -->
+  <footer>
+    <span>© 2026 Nicole Guerra</span>
+    <span>Hecho con intención</span>
+  </footer>
+
+</body>
+</html>
